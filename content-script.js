@@ -1,12 +1,13 @@
 chrome.runtime.sendMessage({request: "getSettings"}, (response) => {
-  const settings = response
+  let settings = response
+  console.log("got settings: " + settings)
 
   // listen for incoming messages
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  chrome.runtime.onMessage.addListener((message/**, sender, sendResponse */) => {
     if(message.request == "changeSettings") {
       settings = message.payload
+      console.log("settings changed to " + settings)
     }
-    return true
   });
 
   function isModifierHeld(evt) {
