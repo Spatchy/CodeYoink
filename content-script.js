@@ -51,7 +51,6 @@ $("code").on("click", function (evt) {
     const yoinkedAlert = `<div class="yoinkedAlert">Yoinked!</div>`
     $("body").append(yoinkedAlert)
     const myYoink = $(".yoinkedAlert")
-    myYoink.css("position", "absolute")
     myYoink.css("top", y)
     myYoink.css("left", x+8)
     
