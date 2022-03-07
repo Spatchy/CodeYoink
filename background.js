@@ -13,7 +13,6 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       } else {
         settingsToSend = data.settings
       }
-      console.log(settingsToSend)
       sendResponse(settingsToSend)
     })
     return true
@@ -33,9 +32,11 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if(msg.request == "newYoink") {
     chrome.storage.sync.get("history", (data) => {
       if(Object.keys(data).length === 0) {
-        chrome.storage.sync.set({history: {}[msg.timestamp] = msg.payload})
+        chrome.storage.sync.set({history: [msg.payload]})
       } else {
-        chrome.storage.sync.set({history: data[msg.timestamp] = msg.payload})
+        const entriesArr = data.history
+        entriesArr.push({}[msg.timestamp] = msg.payload)
+        chrome.storage.sync.set({history: entriesArr})
       }
     })
     return true
@@ -44,12 +45,16 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if(msg.request == "getHistory") {
     chrome.storage.sync.get("history", (data) => {
       if(Object.keys(data).length === 0) {
-        sendResponse({})
+        sendResponse([])
       } else {
-        sendResponse(data)
+        sendResponse(data.history)
       }
     })
     return true
+  }
+
+  if(msg.request == "clearHistory") {
+    chrome.storage.sync.clear()
   }
 })
 
