@@ -45,5 +45,23 @@ $("code").on("click", function (evt) {
         content: $(this).text()
       }
     })
+    const x = evt.pageX
+    const y = evt.pageY
+
+    const yoinkedAlert = `<div class="yoinkedAlert">Yoinked!</div>`
+    $("body").append(yoinkedAlert)
+    const myYoink = $(".yoinkedAlert")
+    myYoink.css("position", "absolute")
+    myYoink.css("top", y)
+    myYoink.css("left", x)
+    
+    // start fade out after 2 seconds
+    setTimeout(function() {
+      myYoink.fadeOut(600)
+    }, 2000)
+    // remove after fade out complete
+    setTimeout(function() {
+      myYoink.remove()
+    }, 2600)
   }
 })
