@@ -56,6 +56,15 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if(msg.request == "clearHistory") {
     chrome.storage.sync.clear()
   }
+
+  if(msg.request == "deleteFromHistory") {
+    chrome.storage.sync.get("history", data => {
+      const entriesArr = data.history
+      entriesArr.splice(entriesArr.findIndex(x => x.timestamp === msg.target), 1)
+      chrome.storage.sync.set({history: entriesArr})
+    })
+    return true
+  }
 })
 
 
