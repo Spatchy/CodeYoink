@@ -39,8 +39,8 @@ $("code").on("click", function (evt) {
     navigator.clipboard.writeText($(this).text())
     chrome.runtime.sendMessage({
       request: "newYoink", 
-      timestamp: Date.now(),
       payload: {
+        timestamp: Date.now(),
         url: location.href,
         content: $(this).text()
       }
