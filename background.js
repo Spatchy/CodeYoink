@@ -38,6 +38,18 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         chrome.storage.sync.set({history: data[msg.timestamp] = msg.payload})
       }
     })
+    return true
+  }
+
+  if(msg.request == "getHistory") {
+    chrome.storage.sync.get("history", (data) => {
+      if(Object.keys(data).length === 0) {
+        sendResponse({})
+      } else {
+        sendResponse(data)
+      }
+    })
+    return true
   }
 })
 
