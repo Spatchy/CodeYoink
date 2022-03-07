@@ -15,7 +15,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 function isModifierHeld(evt) {
   const modifier = settings.modifier
-  if(!modifier) {
+  if(modifier == "none") {
     return true
   } else if(modifier == "ctrl") {
     if(evt.ctrlKey) {
