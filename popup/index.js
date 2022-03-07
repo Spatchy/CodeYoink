@@ -10,4 +10,9 @@ chrome.runtime.sendMessage({request: "getSettings"}, (response) => {
       console.log(response)
     })
   })
+
+  chrome.runtime.sendMessage({request: "getHistory"}, (response) => {
+    const history = response
+    console.log("got history: " + JSON.stringify(history))
+  })
 })
