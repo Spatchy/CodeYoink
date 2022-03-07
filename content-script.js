@@ -53,7 +53,7 @@ $("code").on("click", function (evt) {
     const myYoink = $(".yoinkedAlert")
     myYoink.css("position", "absolute")
     myYoink.css("top", y)
-    myYoink.css("left", x)
+    myYoink.css("left", x+8)
     
     // start fade out after 2 seconds
     setTimeout(function() {
