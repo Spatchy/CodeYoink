@@ -37,5 +37,13 @@ $("code").on("click", function (evt) {
   if(isModifierHeld(evt)) {
     console.log("code copied!")
     navigator.clipboard.writeText($(this).text())
+    chrome.runtime.sendMessage({
+      request: "newYoink", 
+      timestamp: Date.now(),
+      payload: {
+        url: location.href,
+        content: $(this).text()
+      }
+    })
   }
 })

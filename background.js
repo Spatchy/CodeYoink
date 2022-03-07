@@ -8,7 +8,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     let settingsToSend
     chrome.storage.sync.get('settings', (data) => {
       if(Object.keys(data).length === 0) {
-        chrome.storage.sync.set(defaultSettings)
+        chrome.storage.sync.set({settings: defaultSettings})
         settingsToSend = defaultSettings
       } else {
         settingsToSend = data.settings
@@ -28,6 +28,16 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         chrome.tabs.sendMessage(tab.id, msg)
       }) 
     });
+  }
+
+  if(msg.request == "newYoink") {
+    chrome.storage.sync.get("history", (data) => {
+      if(Object.keys(data).length === 0) {
+        chrome.storage.sync.set({history: {}[msg.timestamp] = msg.payload})
+      } else {
+        chrome.storage.sync.set({history: data[msg.timestamp] = msg.payload})
+      }
+    })
   }
 })
 
