@@ -38,6 +38,7 @@ chrome.runtime.sendMessage({request: "getSettings"}, (response) => {
   })
 
   $("#clearHistoryBtn").on("click", function() {
+    $("#historyFeed").empty()
     chrome.runtime.sendMessage({request: "clearHistory"})
   })
 
