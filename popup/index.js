@@ -51,6 +51,6 @@ chrome.runtime.sendMessage({request: "getSettings"}, (response) => {
     const idToDelete = $(this).attr("id").replace("del-", "")
     console.log("deleting: " + idToDelete)
     $("#" + idToDelete).remove()
-    chrome.runtime.sendMessage({"deleteFromHistory": idToDelete})
+    chrome.runtime.sendMessage({request: "deleteFromHistory", target: idToDelete})
   })
 })
