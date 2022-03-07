@@ -15,4 +15,8 @@ chrome.runtime.sendMessage({request: "getSettings"}, (response) => {
     const history = response
     console.log("got history: " + JSON.stringify(history))
   })
+
+  $("#clearHistoryBtn").on("click", function() {
+    chrome.runtime.sendMessage({request: "clearHistory"})
+  })
 })
