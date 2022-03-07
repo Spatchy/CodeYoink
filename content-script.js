@@ -51,8 +51,8 @@ $("code").on("click", function (evt) {
     const yoinkedAlert = `<div class="yoinkedAlert">Yoinked!</div>`
     $("body").append(yoinkedAlert)
     const myYoink = $(".yoinkedAlert")
-    myYoink.css("top", y)
-    myYoink.css("left", x+8)
+    myYoink.css("top", y-10)
+    myYoink.css("left", x+20)
     
     // start fade out after 2 seconds
     setTimeout(function() {
