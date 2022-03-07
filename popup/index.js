@@ -2,7 +2,7 @@ function generateHistoryEntry(entry) {
   const historyTemplate = `
   <div id="${entry.timestamp}">
     <div class="header">
-      <span class="timeCopied"></span>
+      <span class="timeCopied">${entry.timestamp}</span>
       <a class="urlbtn headerbtn" href="${entry.url}">http</a>
       <button class="delbtn headerbtn" id="del-${entry.timestamp}">X</button>
     </div>
@@ -48,6 +48,7 @@ chrome.runtime.sendMessage({request: "getSettings"}, (response) => {
   })
 
   $(document).on("click", ".delbtn", function() {
+    console.log("delete button clicked")
     const idToDelete = $(this).attr("id").replace("del-", "")
     console.log("deleting: " + idToDelete)
     $("#" + idToDelete).remove()
