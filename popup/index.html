@@ -1,20 +1,35 @@
 <html>
   <script src="../jquery-3.6.0.min.js"></script>
+  <script src="../solid.min.js"></script> <!--FontAwesome Icons-->
+  <script src="../fontawesome.min.js"></script>
   <script src="index.js"></script>
-  <h1>Options</h1>
-  <div class="options">
-    <h4>Modifier</h4>
-    <select name="modifier" id="modifier_dropdown">
-      <option value="none">None</option>
-      <option value="ctrl">Ctrl</option>
-      <option value="shift">Shift</option>
-      <option value="alt">Alt</option>
-    </select>
-  </div>
+  <link rel="stylesheet" href="popup.css">
+  <body>
+    <div id="popup-main">
+      
+      <div class="row options">
+        <h1>Options</h1>
+        <div class="options">
+          <h4>Modifier</h4>
+          <select name="modifier" id="modifier_dropdown">
+            <option value="none">None</option>
+            <option value="ctrl">Ctrl</option>
+            <option value="shift">Shift</option>
+            <option value="alt">Alt</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="history-header">
+        <h1>History</h1>
+        <button id="clearHistoryBtn">Clear</button>
+      </div>
+      <div class="row history">
+        <div id="historyFeed">
+          <!--history will be inserted-->
+        </div>
+      </div>
 
-  <h1>History</h1>
-  <button id="clearHistoryBtn">Clear</button>
-  <div id="historyFeed">
-    <!--history will be inserted-->
-  </div>
+    </div>
+  </body>
 </html>
