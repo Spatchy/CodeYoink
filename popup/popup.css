@@ -1,0 +1,83 @@
+html, body {
+  width: 300px;
+  height: 600px;
+  margin: 0;
+}
+
+#popup-main {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  background-color: #001524;
+  color: white;
+}
+
+.row {
+  border: 0px;
+}
+
+.row.options {
+  flex: 0 1 auto;
+}
+
+.row.history {
+  flex: 1 1 auto;
+  overflow-y: scroll;
+}
+
+#historyFeed {
+  flex: 0 1 auto;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.history-header * {
+  display: inline;
+}
+
+.history-header button {
+  position: absolute;
+  right: 0px;
+}
+
+button {
+  margin: 5px;
+  background-color: #001524;
+  color: white;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #303030;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #303030;
+}
+
+.header{
+  background-color: #252540;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-end;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.header .timeCopied {
+  position: absolute !important;
+  left: 8px !important;
+}
+
+div.body {
+  background-color: #313c42;
+}
+
+div.footer {
+  margin-bottom: 8px;
+  background-color: #252540;
+  border-radius: 0px 0px 4px 4px;
+}
+
+div.footer-content{
+  text-align: center;
+}
