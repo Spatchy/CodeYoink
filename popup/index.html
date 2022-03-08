@@ -8,21 +8,25 @@
     <div id="popup-main">
       
       <div class="row options">
-        <h1>Options</h1>
+        <h1><i class="fa-solid fa-gear"></i>&nbsp;Options</h1>
         <div class="options-panel">
-          <h4>Modifier</h4>
-          <select name="modifier" id="modifier_dropdown">
-            <option value="none">None</option>
-            <option value="ctrl">Ctrl</option>
-            <option value="shift">Shift</option>
-            <option value="alt">Alt</option>
-          </select>
+          <div class="modifier-option-wrapper">
+            <h4>Modifier Key: &nbsp;</h4>
+            <div class="item-wrapper">
+              <select name="modifier" id="modifier_dropdown">
+                <option value="none">None</option>
+                <option value="ctrl">Ctrl</option>
+                <option value="shift">Shift</option>
+                <option value="alt">Alt</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
       
       <div class="history-header">
-        <h1>History</h1>
-        <div class="clear-history-wrapper">
+        <h1><i class="fa-solid fa-clock-rotate-left"></i>&nbsp;History</h1>
+        <div class="item-wrapper">
           <button id="clearHistoryBtn">Clear</button>
         </div>
       </div>

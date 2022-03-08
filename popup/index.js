@@ -1,3 +1,12 @@
+function escape(unsafe) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 function generateHistoryEntry(entry) {
   const historyTemplate = `
   <div id="${entry.timestamp}">
@@ -10,7 +19,7 @@ function generateHistoryEntry(entry) {
       </span>
     </div>
     <div class="body constrained">
-      <code class="preview">${entry.content}</code>
+      <code class="preview">${escape(entry.content)}</code>
     </div>
     <div class="footer">
       <div class="footer-content"><i class="fa-solid fa-angle-down"></i></div>

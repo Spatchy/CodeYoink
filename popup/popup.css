@@ -14,6 +14,15 @@ html, body {
   color: white;
 }
 
+h1 {
+  color: #77FF94;
+}
+
+h4 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 .row {
   border: 0px;
 }
@@ -24,13 +33,13 @@ button {
   color: white;
   border-width: 2px;
   border-style: solid;
-  border-color: #303030;
+  border-color: #313c42;
   border-radius: 4px;
 }
 
 button:hover {
   cursor: pointer;
-  background-color: #303030;
+  background-color: #313c42;
 }
 
 button.confirm-del {
@@ -43,15 +52,27 @@ button.confirm-del:hover{
   border-color: #f1204a;
 }
 
+.item-wrapper {
+  display: flex;
+  align-items: center;
+  justify-items: right;
+}
+
 /**everything to do with options pane*/
 
 .row.options {
   flex: 0 1 auto;
+  margin-bottom: 20px;
 }
 
 .options {
   margin-left: 4px;
   margin-right: 4px;
+}
+
+.modifier-option-wrapper {
+  display: flex;
+  align-content: space-between;
 }
 
 /**everything to do with history feed*/
@@ -77,12 +98,6 @@ button.confirm-del:hover{
 .history-header button {
   margin: 0px;
   margin-left: auto;
-}
-
-.history-header .clear-history-wrapper {
-  display: flex;
-  align-items: center;
-  justify-items: right;
 }
 
 .headerbtn {
@@ -112,13 +127,16 @@ button.confirm-del:hover{
   display: flex;
   align-content: center;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   border-radius: 4px 4px 0px 0px;
 }
 
+.header .controls {
+  margin-left: auto;
+}
+
 .header .timeCopied {
-  position: absolute !important;
-  left: 8px !important;
+  margin-left: 2px;
 }
 
 div.body {
