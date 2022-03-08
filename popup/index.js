@@ -2,17 +2,45 @@ function generateHistoryEntry(entry) {
   const historyTemplate = `
   <div id="${entry.timestamp}">
     <div class="header">
-      <span class="timeCopied">${entry.timestamp}</span>
-      <a class="urlbtn headerbtn" href="${entry.url}">http</a>
-      <button class="delbtn headerbtn" id="del-${entry.timestamp}">X</button>
+      <span class="timeCopied">${timeSince(new Date(entry.timestamp))}</span>
+      <span class="controls">
+        <button class="urlbtn headerbtn" href="${entry.url}">http</button>
+        <button class="delbtn headerbtn" id="del-${entry.timestamp}">X</button>
+      </span>
     </div>
     <div class="body">
-      <span class="preview">${entry.content.substring(0, 50)}</span>
+      <code class="preview">${entry.content.substring(0, 200)}</code>
+    </div>
+    <div class="footer">
+      <div class="footer-content"><i class="fa-solid fa-angle-down"></i></div>
     </div>
   </div>
   `
 
   return historyTemplate
+}
+
+function timeSince(timeStamp) {
+  var now = new Date(),
+      secondsPast = (now.getTime() - timeStamp.getTime() ) / 1000;
+  if(secondsPast < 60){
+      return secondsPast + 's';
+  }
+  if(secondsPast < 3600){
+      return parseInt(secondsPast/60) + 'min ago';
+  }
+  if(secondsPast <= 86400){
+      return parseInt(secondsPast/3600) + 'h ago';
+  }
+  if(secondsPast <= 2628000){
+      return parseInt(secondsPast/86400) + 'd ago';
+  }
+  if(secondsPast <= 31536000){
+      return parseInt(secondsPast/2628000) + 'mo ago';
+  }
+  if(secondsPast > 31536000){
+      return parseInt(secondsPast/31536000) + 'y ago';
+  }
 }
 
 chrome.runtime.sendMessage({request: "getSettings"}, (response) => {
