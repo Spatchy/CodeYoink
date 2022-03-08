@@ -4,6 +4,8 @@ html, body {
   margin: 0;
 }
 
+/**general behaviour*/
+
 #popup-main {
   display: flex;
   flex-flow: column;
@@ -14,30 +16,6 @@ html, body {
 
 .row {
   border: 0px;
-}
-
-.row.options {
-  flex: 0 1 auto;
-}
-
-.row.history {
-  flex: 1 1 auto;
-  overflow-y: scroll;
-}
-
-#historyFeed {
-  flex: 0 1 auto;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-.history-header * {
-  display: inline;
-}
-
-.history-header button {
-  position: absolute;
-  right: 0px;
 }
 
 button {
@@ -51,7 +29,82 @@ button {
 }
 
 button:hover {
+  cursor: pointer;
   background-color: #303030;
+}
+
+button.confirm-del {
+  background-color: #f03a5f;
+  border-color: #f03a5f;
+}
+
+button.confirm-del:hover{
+  background-color: #f1204a;
+  border-color: #f1204a;
+}
+
+/**everything to do with options pane*/
+
+.row.options {
+  flex: 0 1 auto;
+}
+
+.options {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+/**everything to do with history feed*/
+
+.row.history {
+  flex: 1 1 auto;
+  overflow-y: scroll;
+}
+
+#historyFeed {
+  flex: 0 1 auto;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.history-header button {
+  margin: 0px;
+  margin-left: auto;
+}
+
+.history-header .clear-history-wrapper {
+  display: flex;
+  align-items: center;
+  justify-items: right;
+}
+
+.headerbtn {
+  background-color: transparent;
+  width: 18px;
+  height: 18px;
+  border-width: 0px;
+  padding: 2px;
+}
+
+.headerbtn.display-feedback {
+  color: #77FF94
+}
+
+.headerbtn:hover {
+  background-color: transparent;
+  color: #77FF94;
+}
+
+.delbtn:hover {
+  background-color: transparent;
+  color: #f03a5f;
 }
 
 .header{
@@ -70,12 +123,31 @@ button:hover {
 
 div.body {
   background-color: #313c42;
+  padding: 2px;
+}
+
+div.body:hover {
+  cursor: pointer;
+}
+
+code {
+  white-space: pre-wrap;
+}
+
+div.body.constrained {
+  max-height: 55px;
+  overflow: hidden;
 }
 
 div.footer {
   margin-bottom: 8px;
   background-color: #252540;
   border-radius: 0px 0px 4px 4px;
+}
+
+div.footer:hover {
+  cursor: pointer;
+  background-color: #313c42;
 }
 
 div.footer-content{
