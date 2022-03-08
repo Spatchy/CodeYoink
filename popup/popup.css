@@ -21,6 +21,8 @@ h1 {
 h4 {
   margin-top: 0px;
   margin-bottom: 0px;
+  display: flex;
+  align-items: center;
 }
 
 .row {
@@ -87,6 +89,14 @@ button.confirm-del:hover{
 .modifier-option-wrapper {
   display: flex;
   align-content: space-between;
+}
+
+select {
+  background-color: white;
+  color: #001524;
+  padding: 4px;
+  border-width: 0px;
+  border-radius: 4px;
 }
 
 /**everything to do with history feed*/
