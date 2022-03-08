@@ -4,12 +4,13 @@ function generateHistoryEntry(entry) {
     <div class="header">
       <span class="timeCopied">${timeSince(new Date(entry.timestamp))}</span>
       <span class="controls">
-        <button class="urlbtn headerbtn" href="${entry.url}">http</button>
-        <button class="delbtn headerbtn" id="del-${entry.timestamp}">X</button>
+        <button class="copybtn headerbtn"><i class="fa-solid fa-paste"></i></button>
+        <button class="urlbtn headerbtn" href="${entry.url}"><i class="fa-solid fa-link"></i></button>
+        <button class="delbtn headerbtn" id="del-${entry.timestamp}"><i class="fa-solid fa-trash-can"></i></button>
       </span>
     </div>
-    <div class="body">
-      <code class="preview">${entry.content.substring(0, 200)}</code>
+    <div class="body constrained">
+      <code class="preview">${entry.content}</code>
     </div>
     <div class="footer">
       <div class="footer-content"><i class="fa-solid fa-angle-down"></i></div>
@@ -22,25 +23,34 @@ function generateHistoryEntry(entry) {
 
 function timeSince(timeStamp) {
   var now = new Date(),
-      secondsPast = (now.getTime() - timeStamp.getTime() ) / 1000;
+      secondsPast = Math.floor((now.getTime() - timeStamp.getTime() ) / 1000)
   if(secondsPast < 60){
-      return secondsPast + 's';
+      return secondsPast + 's ago'
   }
   if(secondsPast < 3600){
-      return parseInt(secondsPast/60) + 'min ago';
+      return parseInt(secondsPast/60) + 'min ago'
   }
   if(secondsPast <= 86400){
-      return parseInt(secondsPast/3600) + 'h ago';
+      return parseInt(secondsPast/3600) + 'h ago'
   }
   if(secondsPast <= 2628000){
-      return parseInt(secondsPast/86400) + 'd ago';
+      return parseInt(secondsPast/86400) + 'd ago'
   }
   if(secondsPast <= 31536000){
-      return parseInt(secondsPast/2628000) + 'mo ago';
+      return parseInt(secondsPast/2628000) + 'mo ago'
   }
   if(secondsPast > 31536000){
-      return parseInt(secondsPast/31536000) + 'y ago';
+      return parseInt(secondsPast/31536000) + 'y ago'
   }
+}
+
+function triggerCopyBtnFeedback(btnObj) {
+  $(btnObj).html(`<i class="fa-solid fa-clipboard-check"></i>`)
+  $(btnObj).addClass("display-feedback")
+  setTimeout(function() {
+    $(btnObj).html(`<i class="fa-solid fa-paste"></i>`)
+    $(btnObj).removeClass("display-feedback")
+  }, 2000)
 }
 
 chrome.runtime.sendMessage({request: "getSettings"}, (response) => {
@@ -66,8 +76,15 @@ chrome.runtime.sendMessage({request: "getSettings"}, (response) => {
   })
 
   $("#clearHistoryBtn").on("click", function() {
-    $("#historyFeed").empty()
-    chrome.runtime.sendMessage({request: "clearHistory"})
+    if($(this).hasClass("confirm-del")) {
+      $("#historyFeed").empty()
+      chrome.runtime.sendMessage({request: "clearHistory"})
+      $(this).removeClass("confirm-del")
+      $(this).html("Clear")
+    } else {
+      $(this).addClass("confirm-del")
+      $(this).html("Click to clear history")
+    }
   })
 
   $(document).on("click", ".urlbtn", function() {
@@ -82,5 +99,36 @@ chrome.runtime.sendMessage({request: "getSettings"}, (response) => {
     console.log("deleting: " + idToDelete)
     $("#" + idToDelete).remove()
     chrome.runtime.sendMessage({request: "deleteFromHistory", target: idToDelete})
+  })
+
+  $(document).on("click", ".copybtn", function() {
+    console.log("copy button clicked")
+    const textToCopy = $(this).parent().parent().siblings(".body").children(".preview").text()
+    console.log("text to copy: " + textToCopy)
+    navigator.clipboard.writeText(textToCopy)
+    triggerCopyBtnFeedback(this)
+  })
+
+  $(document).on("click", ".body", function() {
+    console.log("body clicked")
+    const textToCopy = $(this).children(".preview").text()
+    navigator.clipboard.writeText(textToCopy)
+    const copybtn = $(this).siblings(".header").children(".controls").children(".copybtn")
+    console.log($(copybtn).html())
+    triggerCopyBtnFeedback(copybtn)
+  })
+
+  $(document).on("click", ".footer", function() {
+    console.log("footer clicked")
+    const body = $(this).siblings(".body")
+    if($(this).hasClass("is-expanded")) { // if entry is already expanded
+      body.addClass("constrained")
+      $(this).children(".footer-content").html(`<i class="fa-solid fa-angle-down"></i>`)
+      $(this).removeClass("is-expanded")
+    } else { // if entry is not expanded
+      body.removeClass("constrained")
+      $(this).children(".footer-content").html(`<i class="fa-solid fa-angle-up"></i>`)
+      $(this).addClass("is-expanded")
+    }
   })
 })
