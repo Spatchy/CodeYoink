@@ -58,6 +58,20 @@ button.confirm-del:hover{
   justify-items: right;
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #77ff9540;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #77FF94;
+  border-radius: 4px;
+}
+
 /**everything to do with options pane*/
 
 .row.options {
