@@ -74,6 +74,24 @@ button.confirm-del:hover{
   border-radius: 4px;
 }
 
+/**everything to do with popup header and footer*/
+.row.popup-header {
+  flex: 0 1 auto;
+  margin-bottom: 20px;
+}
+
+.popup-header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #77FF94;
+  height: 50px;
+}
+
+.header-wordmark {
+  height: 80%;
+}
+
 /**everything to do with options pane*/
 
 .row.options {
