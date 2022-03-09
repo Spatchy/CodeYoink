@@ -3,6 +3,12 @@
   "description": "Allows one-click copy and paste from any html code block",
   "version": "1.0",
   "manifest_version": 3,
+  "icons": { 
+    "32": "/assets/chrome-icon/CodeYoink-32.png",
+    "48": "/assets/chrome-icon/CodeYoink-48.png",
+    "96": "/assets/chrome-icon/CodeYoink-96.png",
+    "128": "/assets/chrome-icon/CodeYoink-128.png"
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
