@@ -6,7 +6,7 @@ Whether or not you answered 'yes' to that question, you'll never want to do thin
 
 CodeYoink allows one-click copy and paste from any HTML code block and saves your yoinked code snippets for later. It will even sync those snippets across all your devices as long as you have extension syncing enabled (this is enabled by default in Chrome)
 
-This extension has been published to the Chrome Web Store and is awaiting review. This readme will be updated when it is publically available.
+This extension is available via the Chrome Web Store: [Click to add it to your browser](https://chrome.google.com/webstore/detail/codeyoink/gmagegbcfomohdjhjoldghabnepbjhfa?hl=en-GB&authuser=2)
 
 ### Give it a go
 
